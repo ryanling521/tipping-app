@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipping app</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Tipping Tool</h1>
+    </header>
+    <section>
+        <div class="container">
+            <div class="form-group">
+                <label for="number-people">Number of people</label>
+                <input type="number" name="number-people" id="number-people" required>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+                <!-- can do an even split, or split by cost of each meal -->
+            <div class="form-group">
+                <label for="cost-meal">Total cost of meal</label>
+                <input type="number" name="cost-meal" id="cost-meal" required>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="form-group">
+                <label for="tax">California tax %</label>
+                <input type="number" name="tax" id="tax" value="7.25" required>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="form-group">
+                <label for="tip">Tip</label>
+                <input type="number" name="tip" id="tip" required>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
