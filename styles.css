@@ -18,14 +18,17 @@ h1 {
 }
 
 .form-group {
-    margin-bottom: .5rem;
-    margin-left: 1rem;
+    margin: 1rem .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
 }
 
 .form-group > input {
     border-radius: .25em;
     padding: .25em;
     border: 2px solid white;
+    width: 80%;
 }
 
 
