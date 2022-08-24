@@ -4,26 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tipping app</title>
+    <title>Bill Splitting Tool</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
     <header>
-        <h1>Tipping Tool</h1>
+        <h1>Bill Splitting Tool</h1>
     </header>
 
     <section>
         <div class="container">
-            <form action="#">
+            <form">
                 <div class="form-group">
                     <label for="number-people">Number of people</label>
                     <input type="number" name="number-people" id="number-people" pattern="\d*" required>
                 </div>
-                <div class="form-group">
-                    <label for="cost-meal">Total cost of meal</label>
-                    <input type="number" name="cost-meal" id="cost-meal" pattern="\d*" required>
+                <div class="cost-meal-container">
+                    <div class="form-group each-meal">
+                        <label for="cost-meal">Cost of each meal</label>
+                        <input type="number" name="cost-meal" id="cost-meal" pattern="\d*" placeholder="$" required>
+                    </div>
+                    <div class="form-group each-meal">
+                        <label for="cost-meal">Cost of each meal</label>
+                        <input type="number" name="cost-meal" id="cost-meal" pattern="\d*" placeholder="$" required>
+                    </div>
+                    <div class="form-group each-meal">
+                        <label for="cost-meal">Cost of each meal</label>
+                        <input type="number" name="cost-meal" id="cost-meal" pattern="\d*" placeholder="$" required>
+                    </div>
+                    <div class="form-group each-meal">
+                        <label for="cost-meal">Cost of each meal</label>
+                        <input type="number" name="cost-meal" id="cost-meal" pattern="\d*" placeholder="$" required>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="tax">California tax %</label>
@@ -31,10 +45,10 @@
                 </div>
                 <div class="form-group">
                     <label for="tip">Tip</label>
-                    <input type="number" name="tip" id="tip" pattern="\d*" required>
+                    <input type="number" name="tip" id="tip" pattern="\d*" placeholder="$" required>
                 </div>
                 <div class="button">
-                    <button id="btn" type="submit">Create Account</button>
+                    <button id="btn" type="button">Calculate</button>
                 </div>
             </form>
         </div>

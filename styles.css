@@ -22,6 +22,8 @@ h1 {
     flex-direction: column;
     gap: .25rem;
     margin: 1rem .5rem;
+    border: 2px solid green;
+    text-align: center;
 }
 
 .form-group > input {
@@ -37,6 +39,29 @@ h1 {
     font-weight: bold;
 }
 
+.cost-meal-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 1rem .5rem;
+
+    border: 2px solid red;
+}
+
+.each-meal.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    margin: 1rem .5rem;
+    border: 2px solid green;
+    max-width: 80%;
+
+}
+
+.each-meal > input {
+    max-width: 100%;
+} 
 
 #btn {
     display: block;
@@ -55,4 +80,3 @@ h1 {
     color: #00ffd6;
     cursor: pointer;
 }
-
