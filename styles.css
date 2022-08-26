@@ -22,7 +22,7 @@ h1 {
     flex-direction: column;
     gap: .25rem;
     margin: 1rem .5rem;
-    border: 2px solid green;
+    /* border: 2px solid green; */
     text-align: center;
 }
 
@@ -46,7 +46,7 @@ h1 {
     justify-content: space-evenly;
     margin: 1rem .5rem;
 
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 
 .each-meal.form-group {
@@ -54,7 +54,7 @@ h1 {
     flex-direction: column;
     gap: .25rem;
     margin: 1rem .5rem;
-    border: 2px solid green;
+    /* border: 2px solid green; */
     max-width: 80%;
 
 }
@@ -63,7 +63,7 @@ h1 {
     max-width: 100%;
 } 
 
-#btn {
+button {
     display: block;
     border-radius: .25em;
     border: 2px solid #00ffd6;
@@ -75,7 +75,7 @@ h1 {
     transition: all 0.2s;
 }
 
-#btn:hover {
+button:hover {
     background-color: black;
     color: #00ffd6;
     cursor: pointer;

@@ -1,5 +1,6 @@
 const numPeople = document.querySelector("#number-people");
 const button = document.querySelector("#btn");
+const enterButton = document.querySelector("#enter-btn");
 const costMealGroup = document.querySelector(".cost-meal-container");
 const newMeal = document.createElement('input');
 const container = document.querySelector('.container')
@@ -20,21 +21,6 @@ function removeAllChildNodes(parent) {
     }
 }
 
-// function - creates increments divs "cost of each meal"
-// function addMeal() {
-//     for (let i = 0; i < numPeople.value; i++) {
-//         costArray.push(`meal-${i}`)
-//     }
-//     costArray.forEach(function() {
-//         let div = document.createElement('div');
-//         div.classList.add("form-group");
-//         div.classList.add("each-meal");
-//         div.textContent += "'hello!";
-//         costMealGroup.append(div);
-//     })
-//     let i = 0;
-// }
-
 function addMeal() {
     removeAllChildNodes(costMealGroup);
     for (let i = 0; i < numPeople.value; i++) {
@@ -46,10 +32,10 @@ function addMeal() {
     }
 
     const newDiv = document.querySelectorAll("#new-meal");
-    newDiv.forEach((userItem) => {
+    newDiv.forEach((userItem, index) => {
         let label = document.createElement('label');
         label.setAttribute("for","number-people");
-        label.textContent = "Each person";
+        label.textContent = `Cost of meal ${index+1}`;
         userItem.appendChild(label);   
 
         let input = document.createElement('input');
@@ -64,4 +50,5 @@ function addMeal() {
 // constantly checks the number of people
 // setInterval(addMeal, 1000);
 
+enterButton.addEventListener("click", addMeal);
 
