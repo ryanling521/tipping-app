@@ -1,5 +1,5 @@
 const numPeople = document.querySelector("#number-people");
-const button = document.querySelector("#btn");
+const calculateButton = document.querySelector("#btn");
 const enterButton = document.querySelector("#enter-btn");
 const costMealGroup = document.querySelector(".cost-meal-container");
 const newMeal = document.createElement('input');
@@ -10,7 +10,7 @@ function displayNumPeople() {
     console.log(numPeople.value);
 }
 // event - displays the number of people
-button.addEventListener("click", displayNumPeople);
+calculateButton.addEventListener("click", displayNumPeople);
 
 let costArray = [];
 
@@ -43,6 +43,7 @@ function addMeal() {
         input.placeholder = "$";
         input.name = "cost-meal";
         input.required = "true";
+        input.classList.add("new-inputs");
         userItem.appendChild(input);   
     })
 }
@@ -51,4 +52,24 @@ function addMeal() {
 // setInterval(addMeal, 1000);
 
 enterButton.addEventListener("click", addMeal);
+
+let costList = [];
+
+function addCost() {
+    // let costList = Array.from(document.querySelectorAll("#new-meal"));
+    // let finalCost = costList.map(x => x*2);
+    // console.log(finalCost);
+
+    // select values from each cost of meal input
+    // let costList = Array.from(document.querySelectorAll(".new-inputs"));
+
+    // creates an array of values from cost of meal
+    const newDiv = document.querySelectorAll(".new-inputs");
+    newDiv.forEach(item => {
+        costList.push(item.value);
+    })
+    container.append(costList);
+}
+
+calculateButton.addEventListener("click", addCost);
 
