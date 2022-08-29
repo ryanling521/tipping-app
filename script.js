@@ -2,6 +2,7 @@ const numPeople = document.querySelector("#number-people");
 const calculateButton = document.querySelector("#btn");
 const enterButton = document.querySelector("#enter-btn");
 const costMealGroup = document.querySelector(".cost-meal-container");
+const finalCostMealGroup = document.querySelector(".final-cost-meal-container");
 const newMeal = document.createElement('input');
 const container = document.querySelector('.container')
 
@@ -56,20 +57,50 @@ enterButton.addEventListener("click", addMeal);
 let costList = [];
 
 function addCost() {
-    // let costList = Array.from(document.querySelectorAll("#new-meal"));
-    // let finalCost = costList.map(x => x*2);
-    // console.log(finalCost);
-
-    // select values from each cost of meal input
-    // let costList = Array.from(document.querySelectorAll(".new-inputs"));
-
-    // creates an array of values from cost of meal
     const newDiv = document.querySelectorAll(".new-inputs");
     newDiv.forEach(item => {
         costList.push(item.value);
     })
-    container.append(costList);
+}
+
+// populate final cost of each meal
+function displayFinalCost() {
+    let numberDisplay = costList.length;
+
+    // convert the array to numbers
+    const costListNum = costList.map(str => {
+        return Number(str);
+    });
+
+    // calculate sum of list
+    let sum = costListNum.reduce((a, b) => a + b, 0);
+
+    removeAllChildNodes(finalCostMealGroup);
+    for (let i = 0; i < numberDisplay; i++) {
+        let div = document.createElement('div');
+        div.classList.add("form-group");
+        div.classList.add("each-meal");
+        div.setAttribute("id","final-new-meal");
+        finalCostMealGroup.appendChild(div);
+    }
+
+    const newDiv = document.querySelectorAll("#final-new-meal");
+    newDiv.forEach((userItem, index) => {
+        let label = document.createElement('label');
+        label.setAttribute("for","final-number-people");
+        label.textContent = `Final cost of meal ${index+1}`;
+        userItem.appendChild(label);   
+
+        let input = document.createElement('input');
+        input.type = "number";
+        input.value = costListNum[index];
+        input.name = "cost-meal";
+        input.required = "true";
+        input.classList.add("final-new-inputs");
+        userItem.appendChild(input);   
+    })
 }
 
 calculateButton.addEventListener("click", addCost);
+calculateButton.addEventListener("click", displayFinalCost);
 
