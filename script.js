@@ -1,6 +1,8 @@
 const numPeople = document.querySelector("#number-people");
 const calculateButton = document.querySelector("#btn");
 const enterButton = document.querySelector("#enter-btn");
+const tax = document.querySelector("#tax");
+const tip = document.querySelector("#tip");
 const costMealGroup = document.querySelector(".cost-meal-container");
 const finalCostMealGroup = document.querySelector(".final-cost-meal-container");
 const newMeal = document.createElement('input');
@@ -93,7 +95,7 @@ function displayFinalCost() {
 
         let input = document.createElement('input');
         input.type = "number";
-        input.value = costListNum[index];
+        input.value = costListNum[index] * (1 + tax.value/100) + costListNum[index] / sum * tip.value;
         input.name = "cost-meal";
         input.required = "true";
         input.classList.add("final-new-inputs");
