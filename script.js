@@ -58,15 +58,31 @@ enterButton.addEventListener("click", addMeal);
 
 let costList = [];
 
+// let hello = true;
+
 function addCost() {
     const newDiv = document.querySelectorAll(".new-inputs");
-    newDiv.forEach(item => {
-        costList.push(item.value);
-    })
+    if (costList.length != newDiv.length) {
+        newDiv.forEach((item, index) => {
+            // costList.push(item.value);
+            costList.splice(index, 1, item.value);
+        })
+    }
+    // hello = false;
 }
+
+// function addCostOnce() {
+//     // if (costList.length != )
+//     if (hello) addCost();
+
+// }
+
+calculateButton.addEventListener("click", addCost);
+
 
 // populate final cost of each meal
 function displayFinalCost() {
+    removeAllChildNodes(finalCostMealGroup);
     let numberDisplay = costList.length;
 
     // convert the array to numbers
@@ -76,8 +92,7 @@ function displayFinalCost() {
 
     // calculate sum of list
     let sum = costListNum.reduce((a, b) => a + b, 0);
-
-    removeAllChildNodes(finalCostMealGroup);
+    
     for (let i = 0; i < numberDisplay; i++) {
         let div = document.createElement('div');
         div.classList.add("form-group");
@@ -101,8 +116,9 @@ function displayFinalCost() {
         input.classList.add("final-new-inputs");
         userItem.appendChild(input);   
     })
+
+    // calculateButton.style.display = "none";
 }
 
-calculateButton.addEventListener("click", addCost);
 calculateButton.addEventListener("click", displayFinalCost);
 
