@@ -46,6 +46,8 @@ function addMeal() {
         input.placeholder = "$";
         input.name = "cost-meal";
         input.required = "true";
+        input.pattern = "\d*"
+        input.min = "0";
         input.classList.add("new-inputs");
         userItem.appendChild(input);   
     })
