@@ -45,6 +45,7 @@ function addMeal() {
         input.type = "number";
         input.placeholder = "$";
         input.name = "cost-meal";
+        input.inputmode = "decimal"
         input.required = "true";
         input.pattern = "\\d*"
         input.min = "0";
