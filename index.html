@@ -11,14 +11,14 @@
 
 <body>
     <header>
-        <h1>Bill Splitting Tool</h1>
+        <h1>Bill Splitting Tool Angela</h1>
     </header>
 
     <section>
         <div class="container">
-            <form">
-                <div class="form-group">
-                    <label for="number-people">Number of people</label>
+            <form>
+                <div class="form-group meal-group">
+                    <label for="number-people">Number of Meals</label>
                     <input type="number" name="number-people" id="number-people" value="2" pattern="\d*" min = "2" required>
                 </div>
                 <div class="button">
@@ -34,13 +34,15 @@
                         <input type="number" name="cost-meal" id="cost-meal" pattern="\d*" placeholder="$" required>
                     </div> -->
                 </div>
-                <div class="form-group">
-                    <label for="tax">Los Angeles sales tax %</label>
-                    <input type="number" name="tax" id="tax" value="9.5" pattern="\d*" min = "0" required>
-                </div>
-                <div class="form-group">
-                    <label for="tip">Tip</label>
-                    <input type="number" name="tip" id="tip" pattern="\d*" placeholder="$" min = "0" required>
+                <div class="tax-tip-container">
+                    <div class="form-group">
+                        <label for="tax">Los Angeles sales tax %</label>
+                        <input type="number" name="tax" id="tax" value="9.5" pattern="\d*" min = "0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tip">Tip</label>
+                        <input type="number" name="tip" id="tip" pattern="\d*" placeholder="$" min = "0" required>
+                    </div>
                 </div>
                 <div class="button">
                     <button id="btn" type="button">Calculate</button>

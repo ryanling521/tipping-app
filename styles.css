@@ -8,35 +8,62 @@
     padding: 0;
     font-family: 'Poppins', sans-serif;
     font-size: 1.3125rem;
-    color: white;
-    background-color: black;
+    font-weight: 400;
+    color: #272727;
+    background-color: #F5F5F5;
 }
 
 h1 {
     font-size: 2rem;
     text-align: center;
+    font-weight: 700;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid red; */
+    justify-content: center;
+    align-items: center;
+}
+
+.meal-group {
+    width: clamp(20%, 80%, 90%);
+}
+
+
+input {
+    padding: 0.5rem;
+    border: 3px solid #BCBABA;
+    outline: none;
+}
+
+input:focus {
+    border: 3px double transparent;
+    background-image: linear-gradient(#F5F5F5, #F5F5F5), 
+                      linear-gradient(to right, #F48200, #FDE88D);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+
+.meal-group > input {
+    width: clamp(10%, 20%, 100%);
+    align-self: center;  
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
     gap: .25rem;
-    margin: 1rem .5rem;
+    margin: .5rem 0;
     /* border: 2px solid green; */
-    text-align: center;
+    max-width: 80%;
 }
 
 .form-group > input {
     border-radius: .25em;
     padding: .25em;
-    margin: 0 auto;
-    border: 2px solid white;
-    max-width: 80%;
-}
-
-.form-group > label {
-    margin: 0 auto;
-    font-weight: bold;
 }
 
 .cost-meal-container {
@@ -55,7 +82,6 @@ h1 {
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin: 1rem .5rem;
-
     /* border: 2px solid red; */
 }
 
@@ -64,13 +90,20 @@ h1 {
     flex-direction: column;
     gap: .25rem;
     margin: 1rem .5rem;
-    /* border: 2px solid green; */
     max-width: 80%;
 }
 
 .each-meal > input {
     max-width: 100%;
 } 
+
+.tax-tip-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: clamp(20%, 80%, 90%);
+    /* border: 2px solid red; */
+}
 
 button {
     display: block;
