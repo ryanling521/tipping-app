@@ -38,7 +38,7 @@ function addMeal() {
     newDiv.forEach((userItem, index) => {
         let label = document.createElement('label');
         label.setAttribute("for","number-people");
-        label.textContent = `Cost of meal ${index+1}`;
+        label.textContent = `Meal ${index+1}`;
         userItem.appendChild(label);   
 
         let input = document.createElement('input');
