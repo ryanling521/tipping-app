@@ -38,6 +38,8 @@ function addMeal() {
     newDiv.forEach((userItem, index) => {
         let label = document.createElement('label');
         label.setAttribute("for","number-people");
+        label.style.color = "#F48200"
+        label.style.fontWeight = "700";
         label.textContent = `Meal ${index+1}`;
         userItem.appendChild(label);   
 

@@ -10,15 +10,16 @@
 </head>
 
 <body>
-    <header>
-        <h1>Bill Splitting Tool Angela</h1>
+    <header id="header">
+        <img src="eating.svg" alt="Eating image" class="image"><img>
+        <h1>Easy Split - Angela</h1>
     </header>
 
     <section>
         <div class="container">
             <form>
                 <div class="form-group meal-group">
-                    <label for="number-people">Number of Meals</label>
+                    <label for="number-people">Number of People</label>
                     <input type="number" name="number-people" id="number-people" value="2" pattern="\d*" min = "2" required>
                 </div>
                 <div class="button">
@@ -27,23 +28,26 @@
                 <div class="meal-cost-title">Meal Costs</div> 
                 <div class="cost-meal-container">
                     <div class="form-group each-meal">
-                        <label for="cost-meal">Cost of meal</label>
+                        <label for="cost-meal">Person 1</label>
                         <input type="number" name="cost-meal" id="cost-meal" pattern="\d*" placeholder="$" required>
                     </div>
                     <div class="form-group each-meal">
-                        <label for="cost-meal">Cost of meal</label>
+                        <label for="cost-meal">Person 2</label>
                         <input type="number" name="cost-meal" id="cost-meal" pattern="\d*" placeholder="$" required>
                     </div>
                 </div>
                 <div class="tax-tip-container">
                     <div class="form-group">
-                        <label for="tax">Los Angeles sales tax %</label>
+                        <label for="tax">LA Tax %</label>
                         <input type="number" name="tax" id="tax" value="9.5" pattern="\d*" min = "0" required>
                     </div>
                     <div class="form-group">
                         <label for="tip">Tip</label>
                         <input type="number" name="tip" id="tip" pattern="\d*" placeholder="$" min = "0" required>
                     </div>
+                </div>
+                <div id="total-div">
+                    <span class="total-word">Total:</span> <span class="total-value">$0.00</span>
                 </div>
                 <div class="button">
                     <button id="btn" type="button">Calculate</button>
