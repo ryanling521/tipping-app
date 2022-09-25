@@ -34,20 +34,21 @@ h1 {
 form {
     display: flex;
     flex-direction: column;
-    border: 2px solid red;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    width: clamp(20%, 80%, 90%);
+    margin: 0 auto;
 }
 
 .meal-group {
-    border: 2px solid black;
-    width: clamp(20%, 80%, 90%);
+    /* border: 2px solid black; */
+    width: 100%;
 }
 
 .meal-cost-title {
-    width: clamp(20%, 80%, 90%);
     /* border: 2px solid green; */
+    width: 100%;
 }
 
 input {
@@ -85,7 +86,6 @@ input:focus {
     padding: .25em;
 }
 
-
 .final-cost-meal-container {
     display: flex;
     flex-direction: row;
@@ -99,7 +99,8 @@ input:focus {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: clamp(20%, 80%, 90%);
+    width: 100%;
+
     /* border: 2px solid black; */
 }
 
@@ -125,7 +126,8 @@ input:focus {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    width: clamp(20%, 80%, 90%);
+    width: 100%;
+
     /* border: 2px solid red; */
 }
 
@@ -168,6 +170,6 @@ button:hover {
 }
 
 #total-div {
-    /* align-self: end; */
+    align-self: end;
 }
 
