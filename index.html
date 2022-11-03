@@ -28,19 +28,30 @@
                 <div class="meal-cost-title">Meal Costs</div> 
                 <div class="cost-meal-container">
                     <div class="form-group each-meal">
-                        <div>
-                            <p>Person 1</p>
+                        <div class="each-meal-1">
+                            <div>Person 1</div>
+                            <div class="each-meal-div-1">
+                                <div class="each-meal-color">$0.00</div>
+                                <img src="chevron.svg" alt="down-arrow" class="chevron">
+                            </div>
                         </div>
-                        <div class="each-meal-div">
-                            <div class="each-meal-color">$0.00</div>
-                            <img src="chevron.svg" alt="down-arrow" class="chevron">
+                        <div class="meal-cost-line">
+                            <label for="cost-meal">Cost of meal</label>
+                            <input type="number" name="cost-meal" id="cost-meal" pattern="\d*" placeholder="$0.00" required>
+                        </div>
+                        <div class="total-div-mini">
+                            <span class="total-word total-word-mini">Total:</span> <span class="total-value total-value-mini">$0.00</span>
+                        </div> 
+                        <div class="additional-icons">
+                            <div class="delete">delete</div>
+                            <div class="split">split</div>
+                            <div class="add-meal">add meal</div>
                         </div>
                     </div>
+
                     <div class="form-group each-meal">
-                        <div>
-                            <p>Person 2</p>
-                        </div>
-                        <div class="each-meal-div">
+                        <div>Person 2</div>
+                        <div class="each-meal-div-1">
                             <div class="each-meal-color">$0.00</div>
                             <img src="chevron.svg" alt="down-arrow" class="chevron">
                         </div>
