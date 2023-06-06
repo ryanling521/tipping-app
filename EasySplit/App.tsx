@@ -21,9 +21,13 @@ export default function App() {
 
       {/* input box for number of people */}
       <View style={styles.inputPeopleContainer}>
-        <Text>-</Text>
+        <Button
+          title="-"
+        />
         <TextInput style={styles.inputBox} keyboardType="number-pad"></TextInput>
-        <Text>+</Text>
+        <Button
+          title="+"
+        />
       </View>
 
       <Button title="Submit"></Button>
