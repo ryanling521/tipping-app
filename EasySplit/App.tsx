@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,9 +6,18 @@ import {
   Image,
   Button,
   TextInput,
+  TouchableOpacity
 } from 'react-native';
 
+import Collapsible from 'react-native-collapsible';
+
 export default function App() {
+  const [collapsed, setCollapsed] = useState(true);
+
+  const toggleExpand = () => {
+    setCollapsed(!collapsed);
+  };
+
   return (
     <View>
 
@@ -30,7 +39,25 @@ export default function App() {
         />
       </View>
 
-      <Button title="Submit"></Button>
+      <TouchableOpacity onPress={toggleExpand}>
+        <View>
+          <Text style={styles.body}>
+            Person 1
+          </Text>
+        </View>
+      </TouchableOpacity>
+      <Collapsible collapsed={collapsed}>
+        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent:'space-between'}}>
+          <Text style={styles.body}>
+            Meal 1
+          </Text>
+          <TextInput style={styles.inputBox} keyboardType='number-pad'>
+          </TextInput>
+        </View>
+      </Collapsible>
+
+
+      {/* <Button title="Submit"></Button> */}
 
     </View>
   );
@@ -92,5 +119,3 @@ const styles = StyleSheet.create({
     borderStyle: 'dotted'
   }
 });
-
-
