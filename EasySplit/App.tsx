@@ -56,6 +56,23 @@ export default function App() {
         </View>
       </Collapsible>
 
+      {/* container for tax and tip input boxes */}
+      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+        <View style={{flex:1, margin:10}}>
+          <Text style={[styles.body2,{margin:10}]}>Los Angeles Tax</Text>
+          <TextInput style={styles.inputBox}>
+            
+          </TextInput>
+        </View>
+
+        <View style={{flex:1, margin:10}}>
+          <Text style={[styles.body2,{margin:10}]}>Tip </Text>
+          <TextInput style={styles.inputBox}>
+            
+          </TextInput>
+        </View>
+        
+      </View> 
 
       {/* <Button title="Submit"></Button> */}
 
@@ -88,6 +105,11 @@ const styles = StyleSheet.create({
     fontSize: 21,
     // lineHeight: 45
   },
+  body2: {
+    fontFamily: 'Poppins-Regular',
+    fontWeight: '400',
+    fontSize: 18,
+  },
   header:{
     alignItems: 'center',
     borderColor: 'red',
@@ -103,6 +125,8 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     borderWidth: 1,
+    borderRadius: 8,
+    borderColor: 'gray'
   },
   inputPeopleContainer: {
     flexDirection: 'row',
@@ -111,6 +135,11 @@ const styles = StyleSheet.create({
     borderColor: 'red',
     borderWidth: 2,
     borderStyle: 'dotted'
+  },
+  inputItemContainer: {
+    flex:1,
+    flexDirection: 'column',
+    padding: 50
   },
   // used for seeing padding and margins
   redBorder: {
