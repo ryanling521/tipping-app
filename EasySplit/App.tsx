@@ -6,16 +6,31 @@ import {
   Image,
   Button,
   TextInput,
-  TouchableOpacity
+  FlatList,
 } from 'react-native';
-
-import Collapsible from 'react-native-collapsible';
+import People from './components/people';
 
 export default function App() {
-  const [collapsed, setCollapsed] = useState(true);
+  const [people, setPeople] = useState([
+    {key:'1', prices:[0]} 
+  ]);
 
-  const toggleExpand = () => {
-    setCollapsed(!collapsed);
+  const addPerson = () => {
+    setPeople((prev) => {
+      return [
+        ...prev,
+        {
+          key: Math.random().toString(),
+          prices:[0]
+        }
+      ]
+    });
+  };
+
+  const delPerson = (key) => {
+    setPeople((prevPeople) => {
+      return prevPeople.filter(person => person.key != key)
+    });
   };
 
   return (
@@ -39,22 +54,14 @@ export default function App() {
         />
       </View>
 
-      <TouchableOpacity onPress={toggleExpand}>
-        <View>
-          <Text style={styles.body}>
-            Person 1
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <Collapsible collapsed={collapsed}>
-        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent:'space-between'}}>
-          <Text style={styles.body}>
-            Meal 1
-          </Text>
-          <TextInput style={styles.inputBox} keyboardType='number-pad'>
-          </TextInput>
-        </View>
-      </Collapsible>
+      <FlatList
+        data={people}
+        renderItem={({ item }) => (
+          <People item={item} del={delPerson}/>
+        )}
+      />
+    <Button title="Add Person" onPress={addPerson}/>
+
 
       {/* container for tax and tip input boxes */}
       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>

@@ -1,0 +1,113 @@
+import React, {useState} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Button
+} from 'react-native';
+
+import Collapsible from 'react-native-collapsible';
+
+export default function People({ item, del }) {
+    const [collapsed, setCollapsed] = useState(true);
+
+    const toggleExpand = () => {
+        setCollapsed(!collapsed);
+      };
+
+    return (
+        <View>
+            <TouchableOpacity onPress={toggleExpand}>
+                <View>
+                <Text style={styles.body}>
+                    Person 1
+                </Text>
+                </View>
+            </TouchableOpacity>
+            <Collapsible collapsed={collapsed}>
+                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent:'space-between'}}>
+                    <Text style={styles.body}>
+                        Meal 1
+                    </Text>
+                    <View style={{flexDirection:'row'}}>
+                        <Text style={{fontSize:20}}>$</Text>
+                        <TextInput style={styles.inputBox} keyboardType='number-pad'>
+                        </TextInput>
+                    </View>
+                </View>
+                <Button title='delete' onPress={() => del(item.key)}/>
+            </Collapsible>
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    title: {
+      fontFamily: 'Poppins-Bold',
+      fontWeight: '700',
+      fontSize: 100,
+      // lineHeight: 150
+    },
+    heading1: {
+      fontFamily: 'Poppins-SemiBold',
+      fontWeight: '600',
+      fontSize: 70,
+      // lineHeight: 105
+    },
+    heading2: {
+      fontFamily: 'Poppins-Medium',
+      fontWeight: '500',
+      fontSize: 50,
+      // lineHeight: 75
+    },
+    body: {
+      fontFamily: 'Poppins-Regular',
+      fontWeight: '400',
+      fontSize: 21,
+      // lineHeight: 45
+    },
+    body2: {
+      fontFamily: 'Poppins-Regular',
+      fontWeight: '400',
+      fontSize: 18,
+    },
+    header:{
+      alignItems: 'center',
+      borderColor: 'red',
+      borderWidth: 2,
+      borderStyle: 'dotted'
+    },
+    headerText:{
+      fontFamily: 'Poppins-Bold',
+      fontSize: 45,
+      fontWeight: '700',
+      // lineHeight: 45,
+      color: 'black',
+    },
+    inputBox: {
+      borderWidth: 1,
+      borderRadius: 8,
+      borderColor: 'gray'
+    },
+    inputPeopleContainer: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderColor: 'red',
+      borderWidth: 2,
+      borderStyle: 'dotted'
+    },
+    inputItemContainer: {
+      flex:1,
+      flexDirection: 'column',
+      padding: 50
+    },
+    // used for seeing padding and margins
+    redBorder: {
+      borderColor: 'red',
+      borderWidth: 2,
+      borderStyle: 'dotted'
+    }
+  });
