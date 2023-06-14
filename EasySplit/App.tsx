@@ -20,7 +20,7 @@ export default function App() {
       return [
         ...prev,
         {
-          key: Math.random().toString(),
+          key: Math.floor(Math.random()*1000000).toString(),
           prices:[0]
         }
       ]
@@ -32,6 +32,20 @@ export default function App() {
       return prevPeople.filter(person => person.key != key)
     });
   };
+
+  const addMeal = (key) => {
+    const newArray = [...people];
+    const idx = newArray.findIndex(item => item.key == key);
+    newArray[idx].prices.push(0);
+    setPeople(newArray);
+  }
+
+  const delMeal = (key) => {
+    const newArray = [...people];
+    const idx = newArray.findIndex(item => item.key == key);
+    newArray[idx].prices.pop();
+    setPeople(newArray);
+  }
 
   return (
     <View>
@@ -57,7 +71,7 @@ export default function App() {
       <FlatList
         data={people}
         renderItem={({ item }) => (
-          <People item={item} del={delPerson}/>
+          <People item={item} del={delPerson} add={addMeal} delM={delMeal}/>
         )}
       />
     <Button title="Add Person" onPress={addPerson}/>

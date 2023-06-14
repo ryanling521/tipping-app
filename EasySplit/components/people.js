@@ -10,7 +10,7 @@ import {
 
 import Collapsible from 'react-native-collapsible';
 
-export default function People({ item, del }) {
+export default function People({ item, del, add, delM }) {
     const [collapsed, setCollapsed] = useState(true);
 
     const toggleExpand = () => {
@@ -22,21 +22,28 @@ export default function People({ item, del }) {
             <TouchableOpacity onPress={toggleExpand}>
                 <View>
                 <Text style={styles.body}>
-                    Person 1
+                    Person {item.key}
                 </Text>
                 </View>
             </TouchableOpacity>
             <Collapsible collapsed={collapsed}>
-                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent:'space-between'}}>
-                    <Text style={styles.body}>
-                        Meal 1
-                    </Text>
-                    <View style={{flexDirection:'row'}}>
-                        <Text style={{fontSize:20}}>$</Text>
-                        <TextInput style={styles.inputBox} keyboardType='number-pad'>
-                        </TextInput>
+              {item.prices.map((price, index) => {
+                return (
+                  <View key={index}>
+                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent:'space-between'}}>
+                      <Text style={styles.body}>
+                          Meal {index+1}
+                      </Text>
+                      <View style={{flexDirection:'row'}}>
+                          <Text style={{fontSize:20}}>$</Text>
+                          <TextInput style={styles.inputBox} keyboardType='number-pad'>
+                          </TextInput>
+                      </View>
                     </View>
-                </View>
+                  </View>
+                )})}
+                <Button title='Add Meal' onPress={() => add(item.key)} />
+                <Button title='Delete Meal' onPress={() => delM(item.key)} />
                 <Button title='delete' onPress={() => del(item.key)}/>
             </Collapsible>
         </View>
