@@ -7,13 +7,18 @@ import {
   Button,
   TextInput,
   FlatList,
+  Alert,
+  Keyboard,
 } from 'react-native';
 import People from './components/people';
 
 export default function App() {
   const [people, setPeople] = useState([
-    {key:'1', prices:[0]} 
+    {key:'1', prices: [0]} 
   ]);
+
+  const [tax, setTax] = useState(0);
+  const [tip, setTip] = useState(0);
 
   const addPerson = () => {
     setPeople((prev) => {
@@ -47,6 +52,28 @@ export default function App() {
     setPeople(newArray);
   }
 
+  const updateMeal = (key, value, index) => {
+    const Array = [...people];
+    const idx = Array.findIndex(item => item.key == key);
+    Array[idx].prices[index] = value;
+    setPeople(Array);
+  }
+
+  const show = (key) => {
+    const Array = [...people];
+    const idx = Array.findIndex(item => item.key == key);
+    let j = Array[idx];
+    console.log(j)
+  }
+
+  const updateTax = (a) => {
+    setTax(parseFloat(a));
+  } 
+
+  const updateTip = (a) => {
+    setTip(parseFloat(a));
+  } 
+
   return (
     <View>
 
@@ -71,7 +98,7 @@ export default function App() {
       <FlatList
         data={people}
         renderItem={({ item }) => (
-          <People item={item} del={delPerson} add={addMeal} delM={delMeal}/>
+          <People item={item} del={delPerson} add={addMeal} delM={delMeal} updateM={updateMeal} show={show}/>
         )}
       />
     <Button title="Add Person" onPress={addPerson}/>
@@ -81,21 +108,26 @@ export default function App() {
       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
         <View style={{flex:1, margin:10}}>
           <Text style={[styles.body2,{margin:10}]}>Los Angeles Tax</Text>
-          <TextInput style={styles.inputBox}>
-            
-          </TextInput>
+          <TextInput 
+            style={styles.inputBox}
+            onChangeText={updateTax}
+            placeholder='Input Tax %'
+            keyboardType="numeric" 
+          />
         </View>
 
         <View style={{flex:1, margin:10}}>
           <Text style={[styles.body2,{margin:10}]}>Tip </Text>
-          <TextInput style={styles.inputBox}>
-            
-          </TextInput>
+          <TextInput 
+            style={styles.inputBox}
+            onChangeText={updateTip}
+            placeholder='Input Tip $'
+            keyboardType="numeric" 
+          />
         </View>
         
       </View> 
-
-      {/* <Button title="Submit"></Button> */}
+      {<Button title="Submit"></Button>}
 
     </View>
   );
