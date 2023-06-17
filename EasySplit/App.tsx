@@ -9,12 +9,13 @@ import {
   FlatList,
   Alert,
   Keyboard,
+  ScrollView,
 } from 'react-native';
 import People from './components/people';
 
 export default function App() {
   const [people, setPeople] = useState([
-    {key:'1', prices: [0]} 
+    {key:'1', prices: [0], preTotal:0, postTotal:0,} //Holding a key identifier, price of each meal, a total pre-tax/tip, and a total post-tax/tip 
   ]);
 
   const [tax, setTax] = useState(0);
@@ -55,24 +56,37 @@ export default function App() {
   const updateMeal = (key, value, index) => {
     const Array = [...people];
     const idx = Array.findIndex(item => item.key == key);
-    Array[idx].prices[index] = value;
-    setPeople(Array);
+    Array[idx].prices[index] = parseFloat(value);
+    setPeople(Array); 
+    Array[idx].preTotal = Array[idx].prices.reduce((acc, curr) => acc + curr, 0); //updating total a person pays pretax
   }
 
   const show = (key) => {
     const Array = [...people];
     const idx = Array.findIndex(item => item.key == key);
     let j = Array[idx];
-    console.log(j)
+    console.log(j);
   }
 
   const updateTax = (a) => {
     setTax(parseFloat(a));
   } 
+  
 
   const updateTip = (a) => {
     setTip(parseFloat(a));
   } 
+
+  const calcTotal = () => {
+    const updatedPeople = people.map((person) => {
+      const preTotal = person.prices.reduce((acc, curr) => acc + curr, 0);
+      const postTotal = (preTotal * (1 + (tax / 100))) + (tip / people.length);
+      return { ...person, preTotal, postTotal };
+    });
+  
+    setPeople(updatedPeople);
+    
+  }
 
   return (
     <View>
@@ -128,8 +142,20 @@ export default function App() {
         
       </View> 
       {<Button title="Submit"></Button>}
-
+      <Button title="calc total" onPress={calcTotal}/>
+      
+      {/* Render the calculated results */}
+    <FlatList
+      data={people}
+      renderItem={({ item }) => (
+        <View>
+          <Text style={styles.body}>Person {item.key} pays {item.postTotal}</Text>
+        </View>
+      )}
+    />
+    
     </View>
+    
   );
 }
 
