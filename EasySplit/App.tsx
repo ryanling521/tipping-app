@@ -58,10 +58,9 @@ export default function App() {
     const idx = Array.findIndex(item => item.key == key);
     Array[idx].prices[index] = parseFloat(value);
     setPeople(Array); 
-    Array[idx].preTotal = Array[idx].prices.reduce((acc, curr) => acc + curr, 0); //updating total a person pays pretax
   }
 
-  const show = (key) => {
+  const log = (key) => {
     const Array = [...people];
     const idx = Array.findIndex(item => item.key == key);
     let j = Array[idx];
@@ -89,7 +88,7 @@ export default function App() {
   }
 
   return (
-    <View>
+    <ScrollView>
 
        {/* group image and title */}
       <View style={styles.header}>
@@ -112,7 +111,7 @@ export default function App() {
       <FlatList
         data={people}
         renderItem={({ item }) => (
-          <People item={item} del={delPerson} add={addMeal} delM={delMeal} updateM={updateMeal} show={show}/>
+          <People item={item} del={delPerson} add={addMeal} delM={delMeal} updateM={updateMeal} log={log}/>
         )}
       />
     <Button title="Add Person" onPress={addPerson}/>
@@ -141,11 +140,10 @@ export default function App() {
         </View>
         
       </View> 
-      {<Button title="Submit"></Button>}
       <Button title="calc total" onPress={calcTotal}/>
       
       {/* Render the calculated results */}
-    <FlatList
+    <FlatList 
       data={people}
       renderItem={({ item }) => (
         <View>
@@ -154,7 +152,7 @@ export default function App() {
       )}
     />
     
-    </View>
+    </ScrollView>
     
   );
 }

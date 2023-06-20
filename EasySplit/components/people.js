@@ -11,7 +11,7 @@ import {
 
 import Collapsible from 'react-native-collapsible';
 
-export default function People({ item, del, add, delM, updateM, show}) {
+export default function People({ item, del, add, delM, updateM, log}) {
     const [collapsed, setCollapsed] = useState(true);
 
     const toggleExpand = () => {
@@ -40,7 +40,7 @@ export default function People({ item, del, add, delM, updateM, show}) {
                           <TextInput 
                             style={styles.inputBox} 
                             keyboardType='number-pad'
-                            onChangeText={value => updateM(item.key, value,index)}
+                            onChangeText={value => updateM(item.key, value, index)}
                           />
                       </View>
                     </View>
@@ -49,7 +49,7 @@ export default function People({ item, del, add, delM, updateM, show}) {
                 <Button title='Add Meal' onPress={() => add(item.key)} />
                 <Button title='Delete Meal' onPress={() => delM(item.key)} />
                 <Button title='delete' onPress={() => del(item.key)}/>
-                <Button title='console.log (debug)' onPress={() => show(item.key)}/>
+                <Button title='console.log (debug)' onPress={() => log(item.key)}/>
                 
             </Collapsible>
         </View>
