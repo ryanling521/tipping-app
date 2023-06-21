@@ -20,6 +20,7 @@ export default function App() {
 
   const [tax, setTax] = useState(0);
   const [tip, setTip] = useState(0);
+  const [numberOfPeople, setNumberOfPeople] = useState(0);
 
   const addPerson = () => {
     setPeople((prev) => {
@@ -64,16 +65,23 @@ export default function App() {
     const Array = [...people];
     const idx = Array.findIndex(item => item.key == key);
     let j = Array[idx];
-    console.log(j);
+    console.log(numberOfPeople);
   }
 
   const updateTax = (a) => {
     setTax(parseFloat(a));
   } 
   
-
   const updateTip = (a) => {
     setTip(parseFloat(a));
+  } 
+
+  const updateNumberOfPeople = (a) => {
+    setNumberOfPeople(parseFloat(a));
+    // console.log(numberOfPeople);
+    for (let i = 1; i <= numberOfPeople; i++) {
+      addPerson();
+    }
   } 
 
   const calcTotal = () => {
@@ -88,71 +96,79 @@ export default function App() {
   }
 
   return (
-    <ScrollView>
+    <View>
+      {/* nestedScrollEnabled={true} allows us to nest the FlatList in the ScrollView component */}
+      {/* <ScrollView nestedScrollEnabled={true}> */}
 
-       {/* group image and title */}
-      <View style={styles.header}>
-        <Image source={require('./assets/eating_together.png')}/>
-        <Text style={styles.headerText}>Easy Split</Text>
-      </View>
-      <Text style={styles.body}>Number of people</Text>
+        {/* group image and title */}
+        <View style={styles.header}>
+          <Image source={require('./assets/eating_together.png')}/>
+          <Text style={styles.headerText}>Easy Split</Text>
+        </View>
+        <Text style={styles.body}>Number of people</Text>
 
-      {/* input box for number of people */}
-      <View style={styles.inputPeopleContainer}>
-        <Button
-          title="-"
-        />
-        <TextInput style={styles.inputBox} keyboardType="number-pad"></TextInput>
-        <Button
-          title="+"
-        />
-      </View>
-
-      <FlatList
-        data={people}
-        renderItem={({ item }) => (
-          <People item={item} del={delPerson} add={addMeal} delM={delMeal} updateM={updateMeal} log={log}/>
-        )}
-      />
-    <Button title="Add Person" onPress={addPerson}/>
-
-
-      {/* container for tax and tip input boxes */}
-      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
-        <View style={{flex:1, margin:10}}>
-          <Text style={[styles.body2,{margin:10}]}>Los Angeles Tax</Text>
+        {/* input box for number of people */}
+        <View style={styles.inputPeopleContainer}>
+          <Button
+            title="-"
+          />
           <TextInput 
-            style={styles.inputBox}
-            onChangeText={updateTax}
-            placeholder='Input Tax %'
-            keyboardType="numeric" 
+            style={styles.inputBox} 
+            keyboardType='number-pad'
+            onChangeText={updateNumberOfPeople}
+          />
+
+          <Button
+            title="+"
           />
         </View>
 
-        <View style={{flex:1, margin:10}}>
-          <Text style={[styles.body2,{margin:10}]}>Tip </Text>
-          <TextInput 
-            style={styles.inputBox}
-            onChangeText={updateTip}
-            placeholder='Input Tip $'
-            keyboardType="numeric" 
-          />
-        </View>
+        <FlatList
+          data={people}
+          renderItem={({ item }) => (
+            <People item={item} del={delPerson} add={addMeal} delM={delMeal} updateM={updateMeal} log={log}/>
+          )}
+        />
+        <Button title="Add Person" onPress={addPerson}/>
+
+
+        {/* container for tax and tip input boxes */}
+        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+          <View style={{flex:1, margin:10}}>
+            <Text style={[styles.body2,{margin:10}]}>Los Angeles Tax</Text>
+            <TextInput 
+              style={styles.inputBox}
+              onChangeText={updateTax}
+              placeholder='Input Tax %'
+              keyboardType="numeric" 
+            />
+          </View>
+
+          <View style={{flex:1, margin:10}}>
+            <Text style={[styles.body2,{margin:10}]}>Tip </Text>
+            <TextInput 
+              style={styles.inputBox}
+              onChangeText={updateTip}
+              placeholder='Input Tip $'
+              keyboardType="numeric" 
+            />
+          </View>
+          
+        </View> 
+        <Button title="calc total" onPress={calcTotal}/>
         
-      </View> 
-      <Button title="calc total" onPress={calcTotal}/>
-      
-      {/* Render the calculated results */}
-    <FlatList 
-      data={people}
-      renderItem={({ item }) => (
-        <View>
-          <Text style={styles.body}>Person {item.key} pays {item.postTotal}</Text>
-        </View>
-      )}
-    />
+        {/* Render the calculated results */}
+        <FlatList 
+          data={people}
+          renderItem={({ item }) => (
+            <View>
+              <Text style={styles.body}>Person {item.key} pays {item.postTotal}</Text>
+            </View>
+          )}
+        />
     
-    </ScrollView>
+      {/* </ScrollView> */}
+    </View>
     
   );
 }
