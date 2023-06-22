@@ -20,7 +20,7 @@ export default function App() {
 
   const [tax, setTax] = useState(0);
   const [tip, setTip] = useState(0);
-  const [numberOfPeople, setNumberOfPeople] = useState(0);
+  // const [numberOfPeople, setNumberOfPeople] = useState(0);
 
   const addPerson = () => {
     setPeople((prev) => {
@@ -37,6 +37,15 @@ export default function App() {
   const delPerson = (key) => {
     setPeople((prevPeople) => {
       return prevPeople.filter(person => person.key != key)
+    });
+  };
+
+  const delLastPerson = () => {
+    people.pop();
+    setPeople((prev) => {
+      return [
+        ...prev,
+      ]
     });
   };
 
@@ -65,7 +74,7 @@ export default function App() {
     const Array = [...people];
     const idx = Array.findIndex(item => item.key == key);
     let j = Array[idx];
-    console.log(numberOfPeople);
+    console.log(people);
   }
 
   const updateTax = (a) => {
@@ -76,13 +85,6 @@ export default function App() {
     setTip(parseFloat(a));
   } 
 
-  const updateNumberOfPeople = (a) => {
-    setNumberOfPeople(parseFloat(a));
-    // console.log(numberOfPeople);
-    for (let i = 1; i <= numberOfPeople; i++) {
-      addPerson();
-    }
-  } 
 
   const calcTotal = () => {
     const updatedPeople = people.map((person) => {
@@ -105,21 +107,19 @@ export default function App() {
           <Image source={require('./assets/eating_together.png')}/>
           <Text style={styles.headerText}>Easy Split</Text>
         </View>
-        <Text style={styles.body}>Number of people</Text>
+        
 
         {/* input box for number of people */}
         <View style={styles.inputPeopleContainer}>
           <Button
             title="-"
+            onPress={delLastPerson}
           />
-          <TextInput 
-            style={styles.inputBox} 
-            keyboardType='number-pad'
-            onChangeText={updateNumberOfPeople}
-          />
+          <Text style={styles.body}>Number of people: {people.length} </Text>
 
           <Button
             title="+"
+            onPress={addPerson}
           />
         </View>
 
