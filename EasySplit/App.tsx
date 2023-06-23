@@ -97,6 +97,22 @@ export default function App() {
     
   }
 
+  const clearAll = () => {
+    setPeople([
+      {key:'1', prices: [0], preTotal:0, postTotal:0,}
+    ])
+  }
+
+  const clearMeal = (key) => {
+    const newArray = [...people];
+    const idx = newArray.findIndex(item => item.key == key);
+    while(newArray[idx].prices.length > 0)
+    {
+      newArray[idx].prices.pop();
+    }
+    setPeople(newArray);
+  }
+
   return (
     <View>
       {/* nestedScrollEnabled={true} allows us to nest the FlatList in the ScrollView component */}
@@ -126,10 +142,10 @@ export default function App() {
         <FlatList
           data={people}
           renderItem={({ item }) => (
-            <People item={item} del={delPerson} add={addMeal} delM={delMeal} updateM={updateMeal} log={log}/>
+            <People item={item} del={delPerson} add={addMeal} delM={delMeal} updateM={updateMeal} log={log} clearMeal={clearMeal}/>
           )}
         />
-        <Button title="Add Person" onPress={addPerson}/>
+        <Button title="Clear All" onPress={clearAll}/>
 
 
         {/* container for tax and tip input boxes */}
