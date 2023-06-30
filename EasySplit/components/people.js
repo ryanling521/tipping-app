@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {
   StyleSheet,
   Text,
@@ -11,22 +11,53 @@ import {
 
 import Collapsible from 'react-native-collapsible';
 
-export default function People({ item, del, add, delM, updateM, log, clearMeal}) {
+export default function People({ item, del, add, delM, updateM, log, clearMeal, setN}) {
     const [collapsed, setCollapsed] = useState(true);
+
+    const inputRef = useRef(null);
+
+    const [editing, setEditing] = useState(false);
 
     const toggleExpand = () => {
         setCollapsed(!collapsed);
       };
 
+    const handleEditing = () => {
+      if (editing == true)
+        setEditing(false);
+      if (editing == false) 
+        setEditing(true);    
+    }
+
+    const focus = () => {
+      inputRef.current.focus();
+    }
+    
+
     return (
         <View>
             <TouchableOpacity onPress={toggleExpand}>
                 <View style={{flexDirection: 'row'}}>
-                <Text style={styles.body}>
-                    {item.name}
-                </Text>
+                  <TextInput 
+                    style={styles.body}
+                    value={item.name}
+                    onChangeText={value => setN(item.key,value)}
+                    onEndEditing={handleEditing}
+                    editable={editing}
+                    ref={inputRef}
+                  />
+
                   <View style={styles.edit}>
-                    <Button title='edit'style={styles.edit}></Button>
+                    <Button title='edit'style={styles.edit} 
+                    onPress={() => {
+                      handleEditing();
+                      focus();
+                    }}></Button>
+
+                    <Button title='edit'style={styles.edit} 
+                    onPress={() => {
+                      focus();
+                    }}></Button>
                   </View>
                 </View>
             </TouchableOpacity>

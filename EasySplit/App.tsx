@@ -72,6 +72,13 @@ export default function App() {
     setPeople(Array); 
   }
 
+  const setName = (key, name) => {
+    const newArray = [...people];
+    const idx = newArray.findIndex(item => item.key == key);
+    newArray[idx].name = name;
+    setPeople(newArray);
+  }
+
   const log = (key) => {
     const Array = [...people];
     const idx = Array.findIndex(item => item.key == key);
@@ -87,6 +94,7 @@ export default function App() {
     setTip(parseFloat(a));
   } 
 
+  
 
   const calcTotal = () => {
     const updatedPeople = people.map((person) => {
@@ -144,7 +152,7 @@ export default function App() {
         <FlatList
           data={people}
           renderItem={({ item }) => (
-            <People item={item} del={delPerson} add={addMeal} delM={delMeal} updateM={updateMeal} log={log} clearMeal={clearMeal}/>
+            <People item={item} del={delPerson} add={addMeal} delM={delMeal} updateM={updateMeal} log={log} clearMeal={clearMeal} setN={setName}/>
           )}
         />
         <Button title="Clear All" onPress={clearAll}/>
