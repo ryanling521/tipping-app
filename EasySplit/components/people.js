@@ -21,10 +21,13 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal})
     return (
         <View>
             <TouchableOpacity onPress={toggleExpand}>
-                <View>
+                <View style={{flexDirection: 'row'}}>
                 <Text style={styles.body}>
-                    Person {item.key}
+                    {item.name}
                 </Text>
+                  <View style={styles.edit}>
+                    <Button title='edit'style={styles.edit}></Button>
+                  </View>
                 </View>
             </TouchableOpacity>
             <Collapsible collapsed={collapsed}>
@@ -123,5 +126,9 @@ const styles = StyleSheet.create({
       borderColor: 'red',
       borderWidth: 2,
       borderStyle: 'dotted'
-    }
+    },
+    edit: {
+      width: 50,
+      height: 50,
+    },
   });

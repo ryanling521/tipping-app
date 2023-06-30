@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {cloneElement, useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -15,7 +15,7 @@ import People from './components/people';
 
 export default function App() {
   const [people, setPeople] = useState([
-    {key:'1', prices: [0], preTotal:0, postTotal:0,} //Holding a key identifier, price of each meal, a total pre-tax/tip, and a total post-tax/tip 
+    {key: 1, prices: [0], preTotal:0, postTotal:0, name: 'Person 1'} //Holding a key identifier, price of each meal, a total pre-tax/tip, and a total post-tax/tip 
   ]);
 
   const [tax, setTax] = useState(0);
@@ -27,8 +27,10 @@ export default function App() {
       return [
         ...prev,
         {
-          key: Math.floor(Math.random()*1000000).toString(),
-          prices:[0]
+          // key: Math.floor(Math.random()*1000000).toString(),
+          key: people.length + 1,
+          prices:[0],
+          name: 'Person ' + (people.length + 1)  
         }
       ]
     });
@@ -99,7 +101,7 @@ export default function App() {
 
   const clearAll = () => {
     setPeople([
-      {key:'1', prices: [0], preTotal:0, postTotal:0,}
+      {key:'1', prices: [0], preTotal:0, postTotal:0, name: 'Person 1'}
     ])
   }
 
@@ -161,7 +163,7 @@ export default function App() {
           </View>
 
           <View style={{flex:1, margin:10}}>
-            <Text style={[styles.body2,{margin:10}]}>Tip </Text>
+            <Text style={[styles.body2,{margin:10}]}>Tip</Text>
             <TextInput 
               style={styles.inputBox}
               onChangeText={updateTip}
