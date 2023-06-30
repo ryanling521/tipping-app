@@ -14,7 +14,7 @@ import Collapsible from 'react-native-collapsible';
 export default function People({ item, del, add, delM, updateM, log, clearMeal, setN}) {
     const [collapsed, setCollapsed] = useState(true);
 
-    const inputRef = useRef(null);
+    const inputTextRef = useRef(null);
 
     const [editing, setEditing] = useState(false);
 
@@ -23,16 +23,17 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
       };
 
     const handleEditing = () => {
-      if (editing == true)
+      if (editing == true){
         setEditing(false);
-      if (editing == false) 
-        setEditing(true);    
+      } else {
+        setEditing(true);
+        console.log(inputTextRef.current.style)
+        setTimeout(() => {
+          inputTextRef.current.focus();
+       })
+        // inputTextRef.current.focus()
+      }    
     }
-
-    const focus = () => {
-      inputRef.current.focus();
-    }
-    
 
     return (
         <View>
@@ -44,19 +45,13 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
                     onChangeText={value => setN(item.key,value)}
                     onEndEditing={handleEditing}
                     editable={editing}
-                    ref={inputRef}
+                    ref={inputTextRef}
                   />
 
                   <View style={styles.edit}>
                     <Button title='edit'style={styles.edit} 
                     onPress={() => {
                       handleEditing();
-                      focus();
-                    }}></Button>
-
-                    <Button title='edit'style={styles.edit} 
-                    onPress={() => {
-                      focus();
                     }}></Button>
                   </View>
                 </View>
@@ -114,6 +109,7 @@ const styles = StyleSheet.create({
       fontFamily: 'Poppins-Regular',
       fontWeight: '400',
       fontSize: 21,
+      color: 'black'
       // lineHeight: 45
     },
     body2: {

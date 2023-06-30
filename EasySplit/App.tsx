@@ -1,4 +1,4 @@
-import React, {cloneElement, useState} from 'react';
+import React, {cloneElement, useState, useRef} from 'react';
 import {
   StyleSheet,
   Text,
@@ -20,6 +20,7 @@ export default function App() {
 
   const [tax, setTax] = useState(0);
   const [tip, setTip] = useState(0);
+  
   // const [numberOfPeople, setNumberOfPeople] = useState(0);
 
   const addPerson = () => {
@@ -126,7 +127,7 @@ export default function App() {
   return (
     <View>
       {/* nestedScrollEnabled={true} allows us to nest the FlatList in the ScrollView component */}
-      {/* <ScrollView nestedScrollEnabled={true}> */}
+      <ScrollView nestedScrollEnabled={true}>
 
         {/* group image and title */}
         <View style={styles.header}>
@@ -149,12 +150,21 @@ export default function App() {
           />
         </View>
 
-        <FlatList
-          data={people}
-          renderItem={({ item }) => (
-            <People item={item} del={delPerson} add={addMeal} delM={delMeal} updateM={updateMeal} log={log} clearMeal={clearMeal} setN={setName}/>
-          )}
-        />
+        {people.map((item) => (
+          <People
+            key={item.key}
+            item={item}
+            del={delPerson}
+            add={addMeal}
+            delM={delMeal}
+            updateM={updateMeal}
+            log={log}
+            clearMeal={clearMeal}
+            setN={setName}
+          />
+        ))}
+
+
         <Button title="Clear All" onPress={clearAll}/>
 
 
@@ -177,23 +187,22 @@ export default function App() {
               onChangeText={updateTip}
               placeholder='Input Tip $'
               keyboardType="numeric" 
+
             />
           </View>
           
         </View> 
         <Button title="calc total" onPress={calcTotal}/>
-        
-        {/* Render the calculated results */}
-        <FlatList 
-          data={people}
-          renderItem={({ item }) => (
-            <View>
-              <Text style={styles.body}>Person {item.key} pays {item.postTotal}</Text>
+
+        <View>
+          {people.map((item) => (
+            <View key={item.key}>
+              <Text style={styles.body}>{item.name} pays {item.postTotal}</Text>
             </View>
-          )}
-        />
+          ))}
+        </View>
     
-      {/* </ScrollView> */}
+      </ScrollView>
     </View>
     
   );
