@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   Button,
+  Modal,
   Alert
 } from 'react-native';
 
@@ -13,6 +14,12 @@ import Collapsible from 'react-native-collapsible';
 
 export default function People({ item, del, add, delM, updateM, log, clearMeal, setN}) {
     const [collapsed, setCollapsed] = useState(true);
+
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const toggleModal = () => {
+      setModalVisible(!modalVisible);
+    }
 
     const inputTextRef = useRef(null);
 
@@ -64,6 +71,20 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
                       <Text style={styles.body}>
                           Meal {index+1}
                       </Text>
+                      <Button title='Split' onPress={toggleModal}/>
+                      <Modal
+                        visible={modalVisible}
+                        animationType="slide"
+                        transparent={true}
+                        onRequestClose={toggleModal}
+                      >
+                        <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+                          <View style={{backgroundColor:'white', padding:20}}>
+                            <Text>Test</Text>
+                            <Button title='Close' onPress={toggleModal} />
+                          </View>
+                        </View>
+                      </Modal>
                       <View style={{flexDirection:'row'}}>
                           <Text style={{fontSize:20}}>$</Text>
                           <TextInput 

@@ -24,17 +24,19 @@ export default function App() {
   // const [numberOfPeople, setNumberOfPeople] = useState(0);
 
   const addPerson = () => {
-    setPeople((prev) => {
-      return [
-        ...prev,
-        {
-          // key: Math.floor(Math.random()*1000000).toString(),
-          key: people.length + 1,
-          prices:[0],
-          name: 'Person ' + (people.length + 1)  
-        }
-      ]
-    });
+    const temp = [...people,
+      {
+        // key: Math.floor(Math.random()*1000000).toString(),
+        key: people.length + 1,
+        prices:[0],
+        name: 'Person ' + (people.length + 1)  
+      }
+    ].map((item, index) => ({
+      ...item,
+      key:index+1,
+      name: 'Person' + (index+1)
+    }));
+    setPeople(temp);
   };
 
   const delPerson = (key) => {
@@ -121,6 +123,7 @@ export default function App() {
     {
       newArray[idx].prices.pop();
     }
+    newArray[idx].prices.push(0);
     setPeople(newArray);
   }
 
