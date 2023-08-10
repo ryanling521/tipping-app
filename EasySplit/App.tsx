@@ -97,8 +97,6 @@ export default function App() {
     setTip(parseFloat(a));
   } 
 
-  
-
   const calcTotal = () => {
     const updatedPeople = people.map((person) => {
       const preTotal = person.prices.reduce((acc, curr) => acc + curr, 0);
@@ -155,6 +153,7 @@ export default function App() {
 
         {people.map((item) => (
           <People
+            persons={people}
             key={item.key}
             item={item}
             del={delPerson}

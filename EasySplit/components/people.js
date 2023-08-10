@@ -12,7 +12,7 @@ import {
 
 import Collapsible from 'react-native-collapsible';
 
-export default function People({ item, del, add, delM, updateM, log, clearMeal, setN}) {
+export default function People({ item, del, add, delM, updateM, log, clearMeal, setN, persons}) {
     const [collapsed, setCollapsed] = useState(true);
 
     const [modalVisible, setModalVisible] = useState(false);
@@ -42,6 +42,12 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
       }    
     }
 
+    const [changeColor, setChangeColor] = useState(false);
+
+    const handleClick = () => {
+      setChangeColor(!changeColor);
+    }
+
     return (
         <View>
             <TouchableOpacity onPress={toggleExpand}>
@@ -63,6 +69,7 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
                   </View>
                 </View>
             </TouchableOpacity>
+            
             <Collapsible collapsed={collapsed}>
               {item.prices.map((price, index) => {
                 return (
@@ -71,6 +78,7 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
                       <Text style={styles.body}>
                           Meal {index+1}
                       </Text>
+                      {/* Modal */}
                       <Button title='Split' onPress={toggleModal}/>
                       <Modal
                         visible={modalVisible}
@@ -79,12 +87,21 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
                         onRequestClose={toggleModal}
                       >
                         <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-                          <View style={{backgroundColor:'white', padding:20}}>
-                            <Text>Test</Text>
+                          <View style={{backgroundColor:'white', padding:20}}>                           
+                            <View>
+                              {persons.map((item) => (
+                                <View key={item.key}>
+                                  <TouchableOpacity onPress={handleClick}>
+                                    <Text style={styles.body}>{item.name}</Text>
+                                  </TouchableOpacity>
+                                </View>
+                              ))}
+                            </View>
                             <Button title='Close' onPress={toggleModal} />
                           </View>
                         </View>
                       </Modal>
+
                       <View style={{flexDirection:'row'}}>
                           <Text style={{fontSize:20}}>$</Text>
                           <TextInput 
@@ -131,6 +148,13 @@ const styles = StyleSheet.create({
       fontWeight: '400',
       fontSize: 21,
       color: 'black'
+      // lineHeight: 45
+    },
+    bodyDark: {
+      fontFamily: 'Poppins-Regular',
+      fontWeight: '400',
+      fontSize: 21,
+      color: 'red'
       // lineHeight: 45
     },
     body2: {
