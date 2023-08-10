@@ -12,7 +12,7 @@ import {
 
 import Collapsible from 'react-native-collapsible';
 
-export default function People({ item, del, add, delM, updateM, log, clearMeal, setN, persons}) {
+export default function People({ item, del, add, delM, updateM, log, clearMeal, setN, persons, color }) {
     const [collapsed, setCollapsed] = useState(true);
 
     const [modalVisible, setModalVisible] = useState(false);
@@ -40,12 +40,6 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
        })
         // inputTextRef.current.focus()
       }    
-    }
-
-    const [changeColor, setChangeColor] = useState(false);
-
-    const handleClick = () => {
-      setChangeColor(!changeColor);
     }
 
     return (
@@ -91,8 +85,8 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
                             <View>
                               {persons.map((item) => (
                                 <View key={item.key}>
-                                  <TouchableOpacity onPress={handleClick}>
-                                    <Text style={styles.body}>{item.name}</Text>
+                                  <TouchableOpacity onPress={() => color(item.key)}>
+                                    <Text style={[item.color === false ? styles.bodyRed : styles.body]}>{item.name}</Text>
                                   </TouchableOpacity>
                                 </View>
                               ))}
@@ -148,6 +142,13 @@ const styles = StyleSheet.create({
       fontWeight: '400',
       fontSize: 21,
       color: 'black'
+      // lineHeight: 45
+    },
+    bodyRed: {
+      fontFamily: 'Poppins-Regular',
+      fontWeight: '400',
+      fontSize: 21,
+      color: 'red'
       // lineHeight: 45
     },
     bodyDark: {
