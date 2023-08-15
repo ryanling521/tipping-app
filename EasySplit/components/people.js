@@ -12,7 +12,7 @@ import {
 
 import Collapsible from 'react-native-collapsible';
 
-export default function People({ item, del, add, delM, updateM, log, clearMeal, setN, persons, color }) {
+export default function People({ item, del, add, delM, updateM, log, clearMeal, setN, persons, color, test, itemKey }) {
     const [collapsed, setCollapsed] = useState(true);
 
     const [modalVisible, setModalVisible] = useState(false);
@@ -41,6 +41,12 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
         // inputTextRef.current.focus()
       }    
     }
+
+    const [selectedElement, setSelectedElement] = useState(null);
+
+    const handleElementClick = (element) => {
+      setSelectedElement(element);
+    };
 
     return (
         <View>
@@ -81,9 +87,12 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
                         onRequestClose={toggleModal}
                       >
                         <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-                          <View style={{backgroundColor:'white', padding:20}}>                           
+                          <View style={{backgroundColor:'white', padding:20}}>   
+                                                  
                             <View>
-                              {persons.map((item) => (
+                              {persons
+                              .filter(item => item.key !== itemKey)
+                              .map((item) => (
                                 <View key={item.key}>
                                   <TouchableOpacity onPress={() => color(item.key)}>
                                     <Text style={[item.color === false ? styles.bodyRed : styles.body]}>{item.name}</Text>
@@ -91,6 +100,7 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
                                 </View>
                               ))}
                             </View>
+
                             <Button title='Close' onPress={toggleModal} />
                           </View>
                         </View>

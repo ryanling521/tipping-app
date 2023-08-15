@@ -15,7 +15,7 @@ import People from './components/people';
 
 export default function App() {
   const [people, setPeople] = useState([
-    {key: 1, prices: [0], preTotal:0, postTotal:0, name: 'Person 1', color: false} //Holding a key identifier, price of each meal, a total pre-tax/tip, and a total post-tax/tip 
+    {key: 1, prices: [0], preTotal:0, postTotal:0, name: 'Person 1', color: true} //Holding a key identifier, price of each meal, a total pre-tax/tip, and a total post-tax/tip 
   ]);
 
   const [tax, setTax] = useState(0);
@@ -23,11 +23,20 @@ export default function App() {
   
   // const [numberOfPeople, setNumberOfPeople] = useState(0);
 
+
+  const test = (key, value, index) => {
+    const Array = [...people];
+    const idx = Array.findIndex(item => item.key == key);
+    // Array[idx].key
+    
+  }
+
   const changeColor = (key) => {
     const Array = [...people];
     const idx = Array.findIndex(item => item.key == key);
     Array[idx].color = !(Array[idx].color)
     setPeople(Array); 
+    console.log(Array[idx])
   }
 
   const addPerson = () => {
@@ -160,8 +169,9 @@ export default function App() {
 
         {people.map((item) => (
           <People
+            test={test}
             persons={people}
-            key={item.key}
+            itemKey={item.key}
             item={item}
             del={delPerson}
             add={addMeal}
