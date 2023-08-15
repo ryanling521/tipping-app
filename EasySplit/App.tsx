@@ -24,13 +24,6 @@ export default function App() {
   // const [numberOfPeople, setNumberOfPeople] = useState(0);
 
 
-  const test = (key, value, index) => {
-    const Array = [...people];
-    const idx = Array.findIndex(item => item.key == key);
-    // Array[idx].key
-    
-  }
-
   const changeColor = (key) => {
     const Array = [...people];
     const idx = Array.findIndex(item => item.key == key);
@@ -169,7 +162,6 @@ export default function App() {
 
         {people.map((item) => (
           <People
-            test={test}
             persons={people}
             itemKey={item.key}
             item={item}
