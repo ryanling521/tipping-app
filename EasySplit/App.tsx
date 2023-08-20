@@ -15,7 +15,8 @@ import People from './components/people';
 
 export default function App() {
   const [people, setPeople] = useState([
-    {key: 1, prices: [0], preTotal:0, postTotal:0, name: 'Person 1', color: true} //Holding a key identifier, price of each meal, a total pre-tax/tip, and a total post-tax/tip 
+    {key: 1, prices: [0], preTotal:0, postTotal:0, name: 'Person 1', color: true}, 
+    {key: 2, prices: [0], preTotal:0, postTotal:0, name: 'Person 2', color: true} //Holding a key identifier, price of each meal, a total pre-tax/tip, and a total post-tax/tip 
   ]);
 
   const [tax, setTax] = useState(0);
@@ -35,12 +36,12 @@ export default function App() {
   const addPerson = () => {
     const temp = [...people,
       {
-        // key: Math.floor(Math.random()*1000000).toString(),
         key: people.length + 1,
         prices:[0],
         name: 'Person ' + (people.length + 1)  
       }
-    ].map((item, index) => ({
+    ]
+    .map((item, index) => ({
       ...item,
       key:index+1,
       name: 'Person' + (index+1)
@@ -55,13 +56,22 @@ export default function App() {
   };
 
   const delLastPerson = () => {
-    people.pop();
-    setPeople((prev) => {
-      return [
-        ...prev,
-      ]
-    });
+    if (people.length > 2) {
+      people.pop();
+      setPeople((prev) => {
+        return [
+          ...prev,
+        ]
+      });
+    }
   };
+
+  const splitMeal = (key, value, index) => {
+    const Array = [...people];
+    const idx = Array.findIndex(item => item.key == key);
+    Array[idx].prices[index] = parseFloat(value);
+    setPeople(Array); 
+  }
 
   const addMeal = (key) => {
     const newArray = [...people];
@@ -118,9 +128,10 @@ export default function App() {
   }
 
   const clearAll = () => {
-    setPeople([
-      {key:'1', prices: [0], preTotal:0, postTotal:0, name: 'Person 1'}
-    ])
+      setPeople([
+        {key:'1', prices: [0], preTotal:0, postTotal:0, name: 'Person1'},
+        {key:'2', prices: [0], preTotal:0, postTotal:0, name: 'Person2'}
+      ])
   }
 
   const clearMeal = (key) => {
@@ -164,6 +175,7 @@ export default function App() {
           <People
             persons={people}
             itemKey={item.key}
+            key={item.key}
             item={item}
             del={delPerson}
             add={addMeal}
