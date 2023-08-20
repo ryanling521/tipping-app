@@ -40,11 +40,11 @@ export default function App() {
         prices:[0],
         name: 'Person ' + (people.length + 1)  
       }
-    ].map((item, index) => ({
-      ...item,
-      key:index+1,
-      name: 'Person' + (index+1)
-    }));
+    ];
+    for(let i = 0; i < temp.length; i++)
+    {
+      temp[i].key = i+1;
+    }
     setPeople(temp);
   };
 
@@ -62,6 +62,33 @@ export default function App() {
       ]
     });
   };
+
+  const splitMeal = (key, index) => {
+    const newArray = [...people];
+    const idx = newArray.findIndex(item => item.key == key);
+    const price = newArray[idx].prices[index];
+    let count = 1;
+    for(let i = 0; i < newArray.length; i++)
+    {
+      if(newArray[i].color == false)
+      count++;
+    }
+    const amt = price/count;
+
+    for(let i = 0; i < newArray.length; i++)
+    {
+      if(newArray[i].key == key)
+      {
+        newArray[i].prices[index] = amt;
+        continue;
+      }
+      if(newArray[i].color == false)
+      {
+        newArray[i].prices.push(amt);
+      }
+    }
+    setPeople(newArray);
+  }
 
   const addMeal = (key) => {
     const newArray = [...people];
@@ -163,6 +190,7 @@ export default function App() {
         {people.map((item) => (
           <People
             persons={people}
+            key={item.key}
             itemKey={item.key}
             item={item}
             del={delPerson}
@@ -173,6 +201,7 @@ export default function App() {
             clearMeal={clearMeal}
             setN={setName}
             color={changeColor}
+            splitMeal={splitMeal}
           />
         ))}
 
