@@ -12,7 +12,7 @@ import {
 
 import Collapsible from 'react-native-collapsible';
 
-export default function People({ item, del, add, delM, updateM, log, clearMeal, setN, persons, color, itemKey }) {
+export default function People({ item, del, add, delM, updateM, log, clearMeal, setN, persons, color, itemKey, splitMeal }) {
     const [collapsed, setCollapsed] = useState(true);
 
     const [modalVisible, setModalVisible] = useState(false);
@@ -87,8 +87,7 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
                         onRequestClose={toggleModal}
                       >
                         <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-                          <View style={{backgroundColor:'white', padding:20}}>   
-                                                  
+                          <View style={{backgroundColor:'white', padding:20}}>    
                             <View>
                               {persons
                               .filter(item => item.key !== itemKey)
@@ -100,8 +99,8 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
                                 </View>
                               ))}
                             </View>
-
                             <Button title='Close' onPress={toggleModal} />
+                            <Button title='Split' onPress={() => splitMeal(item.key, index)}/>
                           </View>
                         </View>
                       </Modal>
