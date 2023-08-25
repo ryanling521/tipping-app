@@ -100,7 +100,10 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
                               ))}
                             </View>
                             <Button title='Close' onPress={toggleModal} />
-                            <Button title='Split' onPress={() => splitMeal(item.key, index)}/>
+                            <Button title='Split' onPress={() => {
+                              splitMeal(item.key, index);
+                              toggleModal();
+                              }}/>
                           </View>
                         </View>
                       </Modal>

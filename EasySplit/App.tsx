@@ -30,7 +30,7 @@ export default function App() {
     const idx = Array.findIndex(item => item.key == key);
     Array[idx].color = !(Array[idx].color)
     setPeople(Array); 
-    console.log(Array[idx])
+    console.log(Array)
   }
 
   const addPerson = () => {
@@ -38,7 +38,8 @@ export default function App() {
       {
         key: people.length + 1,
         prices:[0],
-        name: 'Person ' + (people.length + 1)  
+        name: 'Person ' + (people.length + 1)  ,
+        color: true
       }
     ];
     for(let i = 0; i < temp.length; i++)
@@ -137,7 +138,7 @@ export default function App() {
 
   const calcTotal = () => {
     const updatedPeople = people.map((person) => {
-      const preTotal = person.prices.reduce((acc, curr) => acc + curr, 0);
+      const preTotal = person.prices.reduce((acc, curr) => acc + curr, 0).toFixed(2);
       const postTotal = (preTotal * (1 + (tax / 100))) + (tip / people.length);
       return { ...person, preTotal, postTotal };
     });
