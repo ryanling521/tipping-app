@@ -24,6 +24,14 @@ export default function App() {
   
   // const [numberOfPeople, setNumberOfPeople] = useState(0);
 
+  const resetColor = () => {
+    const newArray = [...people];
+    for(let i = 0; i < newArray.length; i++)
+    {
+      newArray[i].color = true;
+    }
+    setPeople(newArray);
+  }
 
   const changeColor = (key) => {
     const Array = [...people];
@@ -207,6 +215,7 @@ export default function App() {
             setN={setName}
             color={changeColor}
             splitMeal={splitMeal}
+            resetColor={resetColor}
           />
         ))}
 

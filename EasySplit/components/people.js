@@ -12,13 +12,14 @@ import {
 
 import Collapsible from 'react-native-collapsible';
 
-export default function People({ item, del, add, delM, updateM, log, clearMeal, setN, persons, color, itemKey, splitMeal }) {
+export default function People({ item, del, add, delM, updateM, log, clearMeal, setN, persons, color, itemKey, splitMeal, resetColor }) {
     const [collapsed, setCollapsed] = useState(true);
 
     const [modalVisible, setModalVisible] = useState(false);
 
     const toggleModal = () => {
       setModalVisible(!modalVisible);
+      resetColor();
     }
 
     const inputTextRef = useRef(null);
