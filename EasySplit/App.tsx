@@ -15,8 +15,8 @@ import People from './components/people';
 
 export default function App() {
   const [people, setPeople] = useState([
-    {key: 1, prices: [0], preTotal:0, postTotal:0, name: 'Person 1', color: true}, 
-    {key: 2, prices: [0], preTotal:0, postTotal:0, name: 'Person 2', color: true} //Holding a key identifier, price of each meal, a total pre-tax/tip, and a total post-tax/tip 
+    {key: 1, prices: [], preTotal:0, postTotal:0, name: 'Person 1', color: true}, 
+    {key: 2, prices: [], preTotal:0, postTotal:0, name: 'Person 2', color: true} //Holding a key identifier, price of each meal, a total pre-tax/tip, and a total post-tax/tip 
   ]);
 
   const [tax, setTax] = useState(0);
@@ -37,7 +37,7 @@ export default function App() {
     const temp = [...people,
       {
         key: people.length + 1,
-        prices:[0],
+        prices:[],
         name: 'Person ' + (people.length + 1)  ,
         color: true
       }
@@ -149,8 +149,8 @@ export default function App() {
 
   const clearAll = () => {
       setPeople([
-        {key:'1', prices: [0], preTotal:0, postTotal:0, name: 'Person1'},
-        {key:'2', prices: [0], preTotal:0, postTotal:0, name: 'Person2'}
+        {key:'1', prices: [], preTotal:0, postTotal:0, name: 'Person1'},
+        {key:'2', prices: [], preTotal:0, postTotal:0, name: 'Person2'}
       ])
   }
 

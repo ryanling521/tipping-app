@@ -112,7 +112,8 @@ export default function People({ item, del, add, delM, updateM, log, clearMeal, 
                           <Text style={{fontSize:20}}>$</Text>
                           <TextInput 
                             style={styles.inputBox} 
-                            keyboardType='number-pad'
+                            keyboardType='numeric'
+                            value={item.prices[index].toString()}
                             onChangeText={value => updateM(item.key, value, index)}
                           />
                       </View>
